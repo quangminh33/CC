@@ -32,6 +32,10 @@ function Board() {
         _pieces[_player1].push(new Horse(0, 7, _player1));
         _pieces[_player1].push(new Horse(9, 1, _player2));
         _pieces[_player1].push(new Horse(9, 7, _player2));
+        _pieces[_player1].push(new Elephant(0, 2, _player1));
+        _pieces[_player1].push(new Elephant(0, 6, _player1));
+        _pieces[_player1].push(new Elephant(9, 2, _player2));
+        _pieces[_player1].push(new Elephant(9, 6, _player2));
 
         // Add pieces to stage and square.
         for (i = 0; i < _pieces.length; i++) {

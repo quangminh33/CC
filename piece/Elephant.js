@@ -1,5 +1,5 @@
-function Elephant(x, y) {
-    Piece.call(this, "assets/EB.png", x, y);
+function Elephant(x, y, player) {
+    Piece.call(this, "E", x, y, player);
 
     var kiX = [-1, -1, 1, 1];
     var kjX = [-1, 1, -1, 1];
@@ -11,14 +11,15 @@ function Elephant(x, y) {
         for (var i = 0; i < 4; i++) {
             var x = this.getX() + kiX[i];
             var y = this.getY() + kjX[i];
-            if (a[x] && a[x][y] === null) {
+            if (a[x] && a[x][y] && a[x][y].getPiece() === null) {
                 x = this.getX() + ki[i];
                 y = this.getY() + kj[i];
-                if (a[x] && a[x][y] === null) {
-                    result.push({
-                        x: x,
-                        y: y
-                    });
+                if (a[x] && a[x][y]) {
+                    var s = a[x][y];
+                    if (s.getPiece() === null ||
+                        s.getPiece().getPlayer() !== this.getPlayer()) {
+                        result.push(s);
+                    }
                 }
             }
         }
@@ -31,4 +32,3 @@ function Elephant(x, y) {
 }
 
 Elephant.prototype = Object.create(Piece.prototype);
-Elephant.prototype.constructor = Horse;
