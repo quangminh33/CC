@@ -21,11 +21,12 @@ function Square(x, y) {
     };
 
     this.setPiece = function(piece) {
-        _piece = piece;
         if (piece) {
             piece.setX(_x);
             piece.setY(_y);
         }
+
+        _piece = piece;
     };
 
     this.getX = function() {

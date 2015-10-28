@@ -33,10 +33,10 @@ function Board() {
         for (i = 0; i < _pieces.length; i++) {
             for (j = 0; j < _pieces[i].length; j++) {
                 var p = _pieces[i][j];
-                // Add to stage.
-                stage.addChild(p);
                 // Add to board.
                 arr[p.getX()][p.getY()].setPiece(p);
+                // Add to stage.
+                stage.addChild(p);
             }
         }
     };
@@ -61,13 +61,14 @@ function Board() {
         var y = (eventData.data.global.x-Config.deltaX/2) / Config.squareSize;
         x = Math.floor(x);
         y = Math.floor(y);
+
         if(currentMoves.indexOf(arr[x][y]) > -1) {
             movePiece(
                 arr[selectedPiece.getX()][selectedPiece.getY()],
                 arr[x][y]);
             selectedPiece = null;
             drawCurrentMoves([]);
-        } else {
+        } else if(arr[x] && arr[x][y]) {
             selectedPiece = arr[x][y].getPiece();
             if (selectedPiece) {
                 var m = selectedPiece.getMoves(arr);
@@ -82,6 +83,9 @@ function Board() {
     }
 
     function movePiece(from, to) {
+        if (to.getPiece()) {
+            stage.removeChild(to.getPiece());
+        }
         to.setPiece(from.getPiece());
         from.setPiece(null);
     }
