@@ -1,4 +1,6 @@
 function Piece(srcImage, x, y, player) {
+    var color = player ? "B" : "W";
+    srcImage = "assets/" + srcImage + color + ".png";
     Sprite.call(this, PIXI.Texture.fromImage(srcImage));
 
     var _x = 0;

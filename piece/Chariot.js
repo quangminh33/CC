@@ -1,8 +1,5 @@
 function Chariot(x, y, player) {
-    var srcImage = player ? "B" : "W";
-    srcImage = "assets/O" + srcImage + ".png";
-
-    Piece.call(this, srcImage, x, y, player);
+    Piece.call(this, "O", x, y, player);
     var ki = [-1, 0, 1, 0];
     var kj = [0, 1, 0, -1];
 
