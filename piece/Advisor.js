@@ -1,5 +1,5 @@
-function Advisor(x, y) {
-    Piece.call(this, "assets/AB.png", x, y);
+function Advisor(x, y, player) {
+    Piece.call(this, "A", x, y, player);
 
     var ki = [-1, -1, 1, 1];
     var kj = [-1, 1, -1, 1];
@@ -9,11 +9,12 @@ function Advisor(x, y) {
         for (var i=0; i<4; i++) {
             var x = this.getX() + ki[i];
             var y = this.getY() + kj[i];
-            if (a[x] && a[x][y] === null) {
-                result.push({
-                    x: x,
-                    y: y
-                });
+            if (a[x] && a[x][y]) {
+                var s = a[x][y];
+                if (s.getPiece() === null ||
+                    s.getPiece().getPlayer() !== this.getPlayer()) {
+                    result.push(s);
+                }
             }
         }
 
@@ -26,4 +27,3 @@ function Advisor(x, y) {
 }
 
 Advisor.prototype = Object.create(Piece.prototype);
-Advisor.prototype.constructor = Advisor;
