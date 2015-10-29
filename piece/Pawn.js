@@ -1,4 +1,4 @@
-function King(x, y, player) {
+function Pawn(x, y, player) {
     Piece.call(this, "K", x, y, player);
 
     var ki = [-1, 0, 1, 0];
@@ -22,8 +22,8 @@ function King(x, y, player) {
     };
 
     this.getName = function() {
-        return "K";
+        return "P";
     };
 }
 
-King.prototype = Object.create(Piece.prototype);
+Pawn.prototype = Object.create(Piece.prototype);

@@ -1,4 +1,4 @@
-var renderer = PIXI.autoDetectRenderer(630, 700,{backgroundColor : 0xFFFFFF});
+var renderer = PIXI.autoDetectRenderer(630, 700,{transparent: true});
 document.body.appendChild(renderer.view);
 
 // create the root of the scene graph
