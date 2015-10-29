@@ -41,6 +41,8 @@ function Board() {
         // Init pieces.
         pieces[player1].push(new Chariot(0, 0, player1));
         pieces[player1].push(new Chariot(0, 8, player1));
+        pieces[player1].push(new Cannon(2, 1, player1));
+        pieces[player1].push(new Cannon(2, 7, player1));
         pieces[player1].push(new Horse(0, 1, player1));
         pieces[player1].push(new Horse(0, 7, player1));
         pieces[player1].push(new King(0, 4, player1));
@@ -51,6 +53,8 @@ function Board() {
 
         pieces[player2].push(new Chariot(9, 0, player2));
         pieces[player2].push(new Chariot(9, 8, player2));
+        pieces[player2].push(new Cannon(7, 1, player2));
+        pieces[player2].push(new Cannon(7, 7, player2));
         pieces[player2].push(new Horse(9, 1, player2));
         pieces[player2].push(new Horse(9, 7, player2));
         pieces[player2].push(new King(9, 4, player2));

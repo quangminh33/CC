@@ -14,10 +14,16 @@ function Cannon(x, y, player) {
                     x += ki[i];
                     y += kj[i];
                 } else {
-                    if (a[x][y].getPiece().getPlayer() !== this.getPlayer()) {
-                        result.push(a[x][y]);
+                    // Get over the piece, find a captured move.
+                    x += ki[i];
+                    y += kj[i];
+                    while (a[x] && a[x][y] && a[x][y].getPiece() === null) {
                         x += ki[i];
                         y += kj[i];
+                    }
+                    if (a[x] && a[x][y] &&
+                        a[x][y].getPiece().getPlayer() !== this.getPlayer()) {
+                            result.push(a[x][y]);
                     }
                     break;
                 }

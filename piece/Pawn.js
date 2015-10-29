@@ -1,5 +1,5 @@
 function Pawn(x, y, player) {
-    Piece.call(this, "K", x, y, player);
+    Piece.call(this, "P", x, y, player);
 
     var ki = [-1, 0, 1, 0];
     var kj = [0, 1, 0, -1];
