@@ -4,10 +4,10 @@ function Board() {
 
     var cols = 9;
     var rows = 10;
-    var _pieces = [[],[]];
+    var pieces = [[],[]];
     var arr = [];
-    var _player1 = 0;
-    var _player2 = 1;
+    var player1 = 0;
+    var player2 = 1;
     var moveImage = PIXI.Texture.fromImage("assets/Move.png");
     var currentMoves = [];
     var selectedPiece = null;
@@ -16,35 +16,50 @@ function Board() {
         var i = 0;
         var j = 0;
         // Init the board
-        for (i=0; i<rows; i++) {
+        // Init square of player 1.
+        for (i=0; i < rows / 2; i++) {
             arr[i] = [];
             for (j=0; j<cols; j++) {
-                arr[i][j] = new Square(i, j);
+                arr[i][j] = new Square(i, j, player1);
+            }
+        }
+        // Init square of player 2.
+        for (i=rows / 2; i < rows; i++) {
+            arr[i] = [];
+            for (j=0; j<cols; j++) {
+                arr[i][j] = new Square(i, j, player1);
+            }
+        }
+        // Init square of castle.
+        for (i = 0; i < 3; i++) {
+            for (j = 3; j < 6; j++) {
+                arr[i][j].setCastle(true);
+                arr[rows -1 - i][j].setCastle(true);
             }
         }
 
         // Init pieces.
-        _pieces[_player1].push(new Chariot(0, 0, _player1));
-        _pieces[_player1].push(new Chariot(0, 8, _player1));
-        _pieces[_player1].push(new Chariot(9, 0, _player2));
-        _pieces[_player1].push(new Chariot(9, 8, _player2));
-        _pieces[_player1].push(new Horse(0, 1, _player1));
-        _pieces[_player1].push(new Horse(0, 7, _player1));
-        _pieces[_player1].push(new Horse(9, 1, _player2));
-        _pieces[_player1].push(new Horse(9, 7, _player2));
-        _pieces[_player1].push(new Elephant(0, 2, _player1));
-        _pieces[_player1].push(new Elephant(0, 6, _player1));
-        _pieces[_player1].push(new Elephant(9, 2, _player2));
-        _pieces[_player1].push(new Elephant(9, 6, _player2));
-        _pieces[_player1].push(new Advisor(0, 3, _player1));
-        _pieces[_player1].push(new Advisor(0, 5, _player1));
-        _pieces[_player1].push(new Advisor(9, 3, _player2));
-        _pieces[_player1].push(new Advisor(9, 5, _player2));
+        pieces[player1].push(new Chariot(0, 0, player1));
+        pieces[player1].push(new Chariot(0, 8, player1));
+        pieces[player1].push(new Chariot(9, 0, player2));
+        pieces[player1].push(new Chariot(9, 8, player2));
+        pieces[player1].push(new Horse(0, 1, player1));
+        pieces[player1].push(new Horse(0, 7, player1));
+        pieces[player1].push(new Horse(9, 1, player2));
+        pieces[player1].push(new Horse(9, 7, player2));
+        pieces[player1].push(new Elephant(0, 2, player1));
+        pieces[player1].push(new Elephant(0, 6, player1));
+        pieces[player1].push(new Elephant(9, 2, player2));
+        pieces[player1].push(new Elephant(9, 6, player2));
+        pieces[player1].push(new Advisor(0, 3, player1));
+        pieces[player1].push(new Advisor(0, 5, player1));
+        pieces[player1].push(new Advisor(9, 3, player2));
+        pieces[player1].push(new Advisor(9, 5, player2));
 
         // Add pieces to stage and square.
-        for (i = 0; i < _pieces.length; i++) {
-            for (j = 0; j < _pieces[i].length; j++) {
-                var p = _pieces[i][j];
+        for (i = 0; i < pieces.length; i++) {
+            for (j = 0; j < pieces[i].length; j++) {
+                var p = pieces[i][j];
                 // Add to board.
                 arr[p.getX()][p.getY()].setPiece(p);
                 // Add to stage.

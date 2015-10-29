@@ -1,10 +1,19 @@
-function Square(x, y) {
+function Square(x, y, player) {
     var moveImage = PIXI.Texture.fromImage("assets/Move.png");
     var _x = 0;
     var _y = 0;
-    var _player = 0;
+    var _player = player;
     var _piece = null;
     var moveSprite = new PIXI.Sprite(moveImage);
+    var _isCastle = false;
+
+    this.isCastle = function() {
+        return _isCastle;
+    };
+
+    this.setCastle = function(isCastle) {
+        _isCastle = isCastle;
+    };
 
     this.setX = function(val) {
         _x = val;

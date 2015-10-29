@@ -9,7 +9,7 @@ function Advisor(x, y, player) {
         for (var i=0; i<4; i++) {
             var x = this.getX() + ki[i];
             var y = this.getY() + kj[i];
-            if (a[x] && a[x][y]) {
+            if (a[x] && a[x][y] && a[x][y].isCastle()) {
                 var s = a[x][y];
                 if (s.getPiece() === null ||
                     s.getPiece().getPlayer() !== this.getPlayer()) {
