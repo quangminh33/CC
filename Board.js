@@ -41,20 +41,23 @@ function Board() {
         // Init pieces.
         pieces[player1].push(new Chariot(0, 0, player1));
         pieces[player1].push(new Chariot(0, 8, player1));
-        pieces[player1].push(new Chariot(9, 0, player2));
-        pieces[player1].push(new Chariot(9, 8, player2));
         pieces[player1].push(new Horse(0, 1, player1));
         pieces[player1].push(new Horse(0, 7, player1));
-        pieces[player1].push(new Horse(9, 1, player2));
-        pieces[player1].push(new Horse(9, 7, player2));
-        pieces[player1].push(new Elephant(0, 2, player1));
-        pieces[player1].push(new Elephant(0, 6, player1));
-        pieces[player1].push(new Elephant(9, 2, player2));
-        pieces[player1].push(new Elephant(9, 6, player2));
+        pieces[player1].push(new King(0, 4, player1));
         pieces[player1].push(new Advisor(0, 3, player1));
         pieces[player1].push(new Advisor(0, 5, player1));
-        pieces[player1].push(new Advisor(9, 3, player2));
-        pieces[player1].push(new Advisor(9, 5, player2));
+        pieces[player1].push(new Elephant(0, 2, player1));
+        pieces[player1].push(new Elephant(0, 6, player1));
+
+        pieces[player2].push(new Chariot(9, 0, player2));
+        pieces[player2].push(new Chariot(9, 8, player2));
+        pieces[player2].push(new Horse(9, 1, player2));
+        pieces[player2].push(new Horse(9, 7, player2));
+        pieces[player2].push(new King(9, 4, player2));
+        pieces[player2].push(new Advisor(9, 3, player2));
+        pieces[player2].push(new Advisor(9, 5, player2));
+        pieces[player2].push(new Elephant(9, 2, player2));
+        pieces[player2].push(new Elephant(9, 6, player2));
 
         // Add pieces to stage and square.
         for (i = 0; i < pieces.length; i++) {
