@@ -8,33 +8,33 @@ function Board() {
     var arr = [];
     var player1 = 0;
     var player2 = 1;
-    var moveImage = PIXI.Texture.fromImage("assets/Move.png");
     var currentMoves = [];
     var selectedPiece = null;
+    var activePlayer = player1;
 
     this.init = function() {
         var i = 0;
         var j = 0;
         // Init the board
         // Init square of player 1.
-        for (i=0; i < rows / 2; i++) {
+        for (i = 0; i < rows / 2; i++) {
             arr[i] = [];
-            for (j=0; j<cols; j++) {
+            for (j = 0; j < cols; j++) {
                 arr[i][j] = new Square(i, j, player1);
             }
         }
         // Init square of player 2.
-        for (i=rows / 2; i < rows; i++) {
+        for (i = rows / 2; i < rows; i++) {
             arr[i] = [];
-            for (j=0; j<cols; j++) {
-                arr[i][j] = new Square(i, j, player1);
+            for (j = 0; j < cols; j++) {
+                arr[i][j] = new Square(i, j, player2);
             }
         }
         // Init square of castle.
         for (i = 0; i < 3; i++) {
             for (j = 3; j < 6; j++) {
                 arr[i][j].setCastle(true);
-                arr[rows -1 - i][j].setCastle(true);
+                arr[rows - 1 - i][j].setCastle(true);
             }
         }
 
@@ -50,6 +50,11 @@ function Board() {
         pieces[player1].push(new Advisor(0, 5, player1));
         pieces[player1].push(new Elephant(0, 2, player1));
         pieces[player1].push(new Elephant(0, 6, player1));
+        pieces[player1].push(new Pawn(3, 0, player1));
+        pieces[player1].push(new Pawn(3, 2, player1));
+        pieces[player1].push(new Pawn(3, 4, player1));
+        pieces[player1].push(new Pawn(3, 6, player1));
+        pieces[player1].push(new Pawn(3, 8, player1));
 
         pieces[player2].push(new Chariot(9, 0, player2));
         pieces[player2].push(new Chariot(9, 8, player2));
@@ -62,13 +67,59 @@ function Board() {
         pieces[player2].push(new Advisor(9, 5, player2));
         pieces[player2].push(new Elephant(9, 2, player2));
         pieces[player2].push(new Elephant(9, 6, player2));
+        pieces[player2].push(new Pawn(6, 0, player2));
+        pieces[player2].push(new Pawn(6, 2, player2));
+        pieces[player2].push(new Pawn(6, 4, player2));
+        pieces[player2].push(new Pawn(6, 6, player2));
+        pieces[player2].push(new Pawn(6, 8, player2));
 
+        var list = [];
+        list[player1] = [
+            {x: 0, y: 0},
+            {x: 0, y: 8},
+            {x: 2, y: 1},
+            {x: 2, y: 7},
+            {x: 0, y: 1},
+            {x: 0, y: 7},
+            {x: 0, y: 4},
+            {x: 0, y: 3},
+            {x: 0, y: 5},
+            {x: 0, y: 2},
+            {x: 0, y: 6},
+            {x: 3, y: 0},
+            {x: 3, y: 2},
+            {x: 3, y: 4},
+            {x: 3, y: 6},
+            {x: 3, y: 8}
+        ];
+        list[player2] = [
+            {x: 9, y: 0},
+            {x: 9, y: 8},
+            {x: 7, y: 1},
+            {x: 7, y: 7},
+            {x: 9, y: 1},
+            {x: 9, y: 7},
+            {x: 9, y: 4},
+            {x: 9, y: 3},
+            {x: 9, y: 5},
+            {x: 9, y: 2},
+            {x: 9, y: 6},
+            {x: 6, y: 0},
+            {x: 6, y: 2},
+            {x: 6, y: 4},
+            {x: 6, y: 6},
+            {x: 6, y: 8}
+        ];
         // Add pieces to stage and square.
         for (i = 0; i < pieces.length; i++) {
             for (j = 0; j < pieces[i].length; j++) {
                 var p = pieces[i][j];
                 // Add to board.
-                arr[p.getX()][p.getY()].setPiece(p);
+                var temp = Math.floor(Math.random() * list[i].length);
+                var item = list[i].splice(temp, 1)[0];
+                //p.setX(item.x);
+                //p.setY(item.y);
+                arr[item.x][item.y].setPiece(p);
                 // Add to stage.
                 stage.addChild(p);
             }
@@ -104,7 +155,7 @@ function Board() {
             drawCurrentMoves([]);
         } else if(arr[x] && arr[x][y]) {
             selectedPiece = arr[x][y].getPiece();
-            if (selectedPiece) {
+            if (selectedPiece && selectedPiece.getPlayer() == activePlayer) {
                 var m = selectedPiece.getMoves(arr);
                 drawCurrentMoves(m);
                 print(m);
@@ -122,6 +173,7 @@ function Board() {
         }
         to.setPiece(from.getPiece());
         from.setPiece(null);
+        activePlayer = activePlayer == player1 ? player2 : player1;
     }
 
     function print(moves) {
