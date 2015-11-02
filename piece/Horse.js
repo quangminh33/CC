@@ -1,5 +1,6 @@
-function Horse(x, y, player) {
-    Piece.call(this, "H", x, y, player);
+function Horse(x, y, player, isBlank) {
+    var name = "H";
+    Piece.call(this, name, x, y, player, isBlank);
 
     var kiX = [-1, 0, 1, 0];
     var kjX = [0, 1, 0, -1];
@@ -28,9 +29,6 @@ function Horse(x, y, player) {
          return result;
     };
 
-    this.getName = function() {
-        return "H";
-    };
 }
 
 Horse.prototype = Object.create(Piece.prototype);

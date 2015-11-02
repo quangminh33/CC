@@ -1,5 +1,6 @@
-function Cannon(x, y, player) {
-    Piece.call(this, "C", x, y, player);
+function Cannon(x, y, player, isBlank) {
+    var name = "C";
+    Piece.call(this, name, x, y, player, isBlank);
     var ki = [-1, 0, 1, 0];
     var kj = [0, 1, 0, -1];
 
@@ -33,9 +34,6 @@ function Cannon(x, y, player) {
         return result;
     };
 
-    this.getName = function() {
-        return "C";
-    };
 }
 
 Cannon.prototype = Object.create(Piece.prototype);

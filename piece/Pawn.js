@@ -1,5 +1,6 @@
-function Pawn(x, y, player) {
-    Piece.call(this, "P", x, y, player);
+function Pawn(x, y, player, isBlank) {
+    var name = "P";
+    Piece.call(this, name, x, y, player, isBlank);
     var PLAYER1 = 0;
     var PLAYER2 = 1;
 
@@ -28,9 +29,6 @@ function Pawn(x, y, player) {
         return result;
     };
 
-    this.getName = function() {
-        return "P";
-    };
 }
 
 Pawn.prototype = Object.create(Piece.prototype);

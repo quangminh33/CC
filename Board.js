@@ -5,6 +5,8 @@ function Board() {
     var cols = 9;
     var rows = 10;
     var pieces = [[],[]];
+    var hiddenPieces = [[],[]];
+    var realPieces = [];
     var arr = [];
     var player1 = 0;
     var player2 = 1;
@@ -39,39 +41,73 @@ function Board() {
         }
 
         // Init pieces.
-        pieces[player1].push(new Chariot(0, 0, player1));
-        pieces[player1].push(new Chariot(0, 8, player1));
-        pieces[player1].push(new Cannon(2, 1, player1));
-        pieces[player1].push(new Cannon(2, 7, player1));
-        pieces[player1].push(new Horse(0, 1, player1));
-        pieces[player1].push(new Horse(0, 7, player1));
-        pieces[player1].push(new King(0, 4, player1));
-        pieces[player1].push(new Advisor(0, 3, player1));
-        pieces[player1].push(new Advisor(0, 5, player1));
-        pieces[player1].push(new Elephant(0, 2, player1));
-        pieces[player1].push(new Elephant(0, 6, player1));
-        pieces[player1].push(new Pawn(3, 0, player1));
-        pieces[player1].push(new Pawn(3, 2, player1));
-        pieces[player1].push(new Pawn(3, 4, player1));
-        pieces[player1].push(new Pawn(3, 6, player1));
-        pieces[player1].push(new Pawn(3, 8, player1));
+        pieces[player1].push(new Chariot(0, 0, player1, true));
+        pieces[player1].push(new Chariot(0, 8, player1, true));
+        pieces[player1].push(new Cannon(2, 1, player1, true));
+        pieces[player1].push(new Cannon(2, 7, player1, true));
+        pieces[player1].push(new Horse(0, 1, player1, true));
+        pieces[player1].push(new Horse(0, 7, player1, true));
+        // pieces[player1].push(new King(0, 4, player1, true));
+        pieces[player1].push(new Advisor(0, 3, player1, true, true));
+        pieces[player1].push(new Advisor(0, 5, player1, true, true));
+        pieces[player1].push(new Elephant(0, 2, player1, true));
+        pieces[player1].push(new Elephant(0, 6, player1, true));
+        pieces[player1].push(new Pawn(3, 0, player1, true));
+        pieces[player1].push(new Pawn(3, 2, player1, true));
+        pieces[player1].push(new Pawn(3, 4, player1, true));
+        pieces[player1].push(new Pawn(3, 6, player1, true));
+        pieces[player1].push(new Pawn(3, 8, player1, true));
 
-        pieces[player2].push(new Chariot(9, 0, player2));
-        pieces[player2].push(new Chariot(9, 8, player2));
-        pieces[player2].push(new Cannon(7, 1, player2));
-        pieces[player2].push(new Cannon(7, 7, player2));
-        pieces[player2].push(new Horse(9, 1, player2));
-        pieces[player2].push(new Horse(9, 7, player2));
-        pieces[player2].push(new King(9, 4, player2));
-        pieces[player2].push(new Advisor(9, 3, player2));
-        pieces[player2].push(new Advisor(9, 5, player2));
-        pieces[player2].push(new Elephant(9, 2, player2));
-        pieces[player2].push(new Elephant(9, 6, player2));
-        pieces[player2].push(new Pawn(6, 0, player2));
-        pieces[player2].push(new Pawn(6, 2, player2));
-        pieces[player2].push(new Pawn(6, 4, player2));
-        pieces[player2].push(new Pawn(6, 6, player2));
-        pieces[player2].push(new Pawn(6, 8, player2));
+        pieces[player2].push(new Chariot(9, 0, player2, true));
+        pieces[player2].push(new Chariot(9, 8, player2, true));
+        pieces[player2].push(new Cannon(7, 1, player2, true));
+        pieces[player2].push(new Cannon(7, 7, player2, true));
+        pieces[player2].push(new Horse(9, 1, player2, true));
+        pieces[player2].push(new Horse(9, 7, player2, true));
+        // pieces[player2].push(new King(9, 4, player2, true));
+        pieces[player2].push(new Advisor(9, 3, player2, true,true));
+        pieces[player2].push(new Advisor(9, 5, player2, true,true));
+        pieces[player2].push(new Elephant(9, 2, player2, true));
+        pieces[player2].push(new Elephant(9, 6, player2, true));
+        pieces[player2].push(new Pawn(6, 0, player2, true));
+        pieces[player2].push(new Pawn(6, 2, player2, true));
+        pieces[player2].push(new Pawn(6, 4, player2, true));
+        pieces[player2].push(new Pawn(6, 6, player2, true));
+        pieces[player2].push(new Pawn(6, 8, player2, true));
+
+        hiddenPieces[player1].push(new Chariot(0, 0, player1));
+        hiddenPieces[player1].push(new Chariot(0, 8, player1));
+        hiddenPieces[player1].push(new Cannon(2, 1, player1));
+        hiddenPieces[player1].push(new Cannon(2, 7, player1));
+        hiddenPieces[player1].push(new Horse(0, 1, player1));
+        hiddenPieces[player1].push(new Horse(0, 7, player1));
+        // hiddenPieces[player1].push(new King(0, 4, player1));
+        hiddenPieces[player1].push(new Advisor(0, 3, player1));
+        hiddenPieces[player1].push(new Advisor(0, 5, player1));
+        hiddenPieces[player1].push(new Elephant(0, 2, player1));
+        hiddenPieces[player1].push(new Elephant(0, 6, player1));
+        hiddenPieces[player1].push(new Pawn(3, 0, player1));
+        hiddenPieces[player1].push(new Pawn(3, 2, player1));
+        hiddenPieces[player1].push(new Pawn(3, 4, player1));
+        hiddenPieces[player1].push(new Pawn(3, 6, player1));
+        hiddenPieces[player1].push(new Pawn(3, 8, player1));
+
+        hiddenPieces[player2].push(new Chariot(9, 0, player2));
+        hiddenPieces[player2].push(new Chariot(9, 8, player2));
+        hiddenPieces[player2].push(new Cannon(7, 1, player2));
+        hiddenPieces[player2].push(new Cannon(7, 7, player2));
+        hiddenPieces[player2].push(new Horse(9, 1, player2));
+        hiddenPieces[player2].push(new Horse(9, 7, player2));
+        // hiddenPieces[player2].push(new King(9, 4, player2));
+        hiddenPieces[player2].push(new Advisor(9, 3, player2));
+        hiddenPieces[player2].push(new Advisor(9, 5, player2));
+        hiddenPieces[player2].push(new Elephant(9, 2, player2));
+        hiddenPieces[player2].push(new Elephant(9, 6, player2));
+        hiddenPieces[player2].push(new Pawn(6, 0, player2));
+        hiddenPieces[player2].push(new Pawn(6, 2, player2));
+        hiddenPieces[player2].push(new Pawn(6, 4, player2));
+        hiddenPieces[player2].push(new Pawn(6, 6, player2));
+        hiddenPieces[player2].push(new Pawn(6, 8, player2));
 
         var list = [];
         list[player1] = [
@@ -81,7 +117,7 @@ function Board() {
             {x: 2, y: 7},
             {x: 0, y: 1},
             {x: 0, y: 7},
-            {x: 0, y: 4},
+            // {x: 0, y: 4},
             {x: 0, y: 3},
             {x: 0, y: 5},
             {x: 0, y: 2},
@@ -99,7 +135,7 @@ function Board() {
             {x: 7, y: 7},
             {x: 9, y: 1},
             {x: 9, y: 7},
-            {x: 9, y: 4},
+            // {x: 9, y: 4},
             {x: 9, y: 3},
             {x: 9, y: 5},
             {x: 9, y: 2},
@@ -110,20 +146,42 @@ function Board() {
             {x: 6, y: 6},
             {x: 6, y: 8}
         ];
+
+        var kingPos = [
+            {x: 0, y: 4, p: player1},
+            {x: 9, y: 4, p: player2}
+        ];
+        for (var i in kingPos) {
+            var king = new King(kingPos[i].x, kingPos[i].y, kingPos[i].p);
+            arr[kingPos[i].x][kingPos[i].y].setPiece(king);
+            stage.addChild(king);
+        }
+
         // Add pieces to stage and square.
         for (i = 0; i < pieces.length; i++) {
             for (j = 0; j < pieces[i].length; j++) {
                 var p = pieces[i][j];
                 // Add to board.
-                var temp = Math.floor(Math.random() * list[i].length);
-                var item = list[i].splice(temp, 1)[0];
                 //p.setX(item.x);
                 //p.setY(item.y);
-                arr[item.x][item.y].setPiece(p);
+                arr[p.getX()][p.getY()].setPiece(p);
                 // Add to stage.
                 stage.addChild(p);
             }
         }
+
+        // Add real pieces.
+        for (i = 0; i < hiddenPieces.length; i++) {
+            for (j = 0; j < hiddenPieces[i].length; j++) {
+                var p = hiddenPieces[i][j];
+                // Add to board.
+                var rand = Math.floor(Math.random() * list[i].length);
+                var item = list[i].splice(rand, 1)[0];
+                realPieces[item.x + ":" + item.y] = p;
+                //arr[item.x][item.y].setPiece(p);
+            }
+        }
+
     };
 
     function drawCurrentMoves(moves) {
@@ -168,10 +226,18 @@ function Board() {
     }
 
     function movePiece(from, to) {
+        var p = from.getPiece();
         if (to.getPiece()) {
             stage.removeChild(to.getPiece());
         }
-        to.setPiece(from.getPiece());
+
+        if (p.isBlank()) {
+            stage.removeChild(p);
+            stage.addChild(realPieces[from.getX() + ":" + from.getY()]);
+            to.setPiece(realPieces[from.getX() + ":" + from.getY()]);
+        } else {
+            to.setPiece(p);
+        }
         from.setPiece(null);
         activePlayer = activePlayer == player1 ? player2 : player1;
     }

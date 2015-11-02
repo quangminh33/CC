@@ -1,5 +1,6 @@
-function Elephant(x, y, player) {
-    Piece.call(this, "E", x, y, player);
+function Elephant(x, y, player, isBlank) {
+    var name = "E";
+    Piece.call(this, name, x, y, player, isBlank);
 
     var kiX = [-1, -1, 1, 1];
     var kjX = [-1, 1, -1, 1];
@@ -26,9 +27,6 @@ function Elephant(x, y, player) {
         return result;
     };
 
-    this.getName = function() {
-        return "E";
-    };
 }
 
 Elephant.prototype = Object.create(Piece.prototype);

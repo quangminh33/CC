@@ -1,5 +1,6 @@
-function Chariot(x, y, player) {
-    Piece.call(this, "O", x, y, player);
+function Chariot(x, y, player, isBlank) {
+    var name = "O";
+    Piece.call(this, name, x, y, player, isBlank);
     var ki = [-1, 0, 1, 0];
     var kj = [0, 1, 0, -1];
 
@@ -27,9 +28,6 @@ function Chariot(x, y, player) {
         return result;
     };
 
-    this.getName = function() {
-        return "O";
-    };
 }
 
 Chariot.prototype = Object.create(Piece.prototype);

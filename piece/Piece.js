@@ -1,11 +1,18 @@
-function Piece(srcImage, x, y, player) {
+function Piece(srcImage, x, y, player, isBlank) {
     var color = player ? "B" : "W";
+    srcImage = isBlank ? "": srcImage;
+    var name = srcImage;
     srcImage = "assets/" + srcImage + color + ".png";
+
     Sprite.call(this, PIXI.Texture.fromImage(srcImage));
 
     var _x = 0;
     var _y = 0;
     var _player = player;
+
+    this.isBlank = function() {
+        return Boolean(isBlank);
+    };
 
     this.setX = function(val) {
         _x = val;
@@ -21,6 +28,10 @@ function Piece(srcImage, x, y, player) {
         _player = val;
     };
 
+    this.getName = function() {
+        return name;
+    };
+
     this.getX = function() {
         return _x;
     };
@@ -32,6 +43,8 @@ function Piece(srcImage, x, y, player) {
     this.getPlayer = function() {
         return _player;
     };
+
+
 
     this.anchor.x = 0.5; // pixijs
     this.anchor.y = 0.5; // pixijs

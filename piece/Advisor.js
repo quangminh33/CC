@@ -1,5 +1,7 @@
-function Advisor(x, y, player) {
-    Piece.call(this, "A", x, y, player);
+function Advisor(x, y, player, isBlank, isCheckCastle) {
+    var name = "A";
+    isCheckCastle = Boolean(isCheckCastle);
+    Piece.call(this, name, x, y, player, isBlank);
 
     var ki = [-1, -1, 1, 1];
     var kj = [-1, 1, -1, 1];
@@ -9,7 +11,9 @@ function Advisor(x, y, player) {
         for (var i=0; i<4; i++) {
             var x = this.getX() + ki[i];
             var y = this.getY() + kj[i];
-            if (a[x] && a[x][y] && a[x][y].isCastle()) {
+            if (
+                a[x] && a[x][y] && (a[x][y].isCastle() || !isCheckCastle)
+            ) {
                 var s = a[x][y];
                 if (s.getPiece() === null ||
                     s.getPiece().getPlayer() !== this.getPlayer()) {
@@ -21,9 +25,6 @@ function Advisor(x, y, player) {
         return result;
     };
 
-    this.getName = function() {
-        return "A";
-    };
 }
 
 Advisor.prototype = Object.create(Piece.prototype);
